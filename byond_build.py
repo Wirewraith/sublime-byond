@@ -7,7 +7,7 @@ import threading
 import os
 import time
 
-class ExecDmBuildCommand(sublime_plugin.WindowCommand):
+class ExecByondBuildCommand(sublime_plugin.WindowCommand):
 
     encoding = 'utf-8'
     killed = False
@@ -16,14 +16,9 @@ class ExecDmBuildCommand(sublime_plugin.WindowCommand):
     panel_lock = threading.Lock()
 
     def is_enabled(self, kill = False, **kwargs):
-        print('CHECKING IS_ENABLED')
-        # The Cancel build option should only be available when the process is still running
-        # if kill:
-        #     return self.proc is not None and self.proc.poll() is None
-        # return True
         return self.proc is not None
 
-    def run(self, kill = False, dm_launch = False, **kwargs):
+    def run(self, kill = False, byond_launch = False, **kwargs):
         if kill:
             self.kill()
             return
@@ -34,7 +29,7 @@ class ExecDmBuildCommand(sublime_plugin.WindowCommand):
         # A lock is used to ensure only one thread is touching the output panel at a time
         with self.panel_lock:
             # Creating the panel implicitly clears any previous contents
-            self.panel = self.window.create_output_panel('dm_build')
+            self.panel = self.window.create_output_panel('BYOND')
 
             # Enable result navigation. The result_base_dir sets the
             # path to resolve relative file names against.
@@ -44,9 +39,9 @@ class ExecDmBuildCommand(sublime_plugin.WindowCommand):
                 r'^((?:.*?)\.(?:.*?)):(.*?):()(.*?)$'
             )
             settings.set('result_base_dir', working_dir)
-            settings.set('syntax', 'Packages/sublime-DM-2/DM.tmLanguage')
+            settings.set('syntax', 'BYOND.tmLanguage')
 
-            self.window.run_command('show_panel', {'panel': 'output.dm_build'})
+            self.window.run_command('show_panel', {'panel': 'output.BYOND'})
 
         if self.proc is not None:
             self.kill()
@@ -59,13 +54,13 @@ class ExecDmBuildCommand(sublime_plugin.WindowCommand):
             startupInfo = subprocess.STARTUPINFO()
             startupInfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
 
-        if dm_launch:
-            cmd = [self.get_setting('installation_path') + self.get_setting(dm_launch + '_executable')] + [self.get_build_file(working_dir, '.dmb')] + ['-trusted']
+        if byond_launch:
+            cmd = [self.get_setting('installation_path') + self.get_setting(byond_launch + '_executable')] + [self.get_build_file(working_dir, '.dmb')] + ['-trusted']
 
-            if dm_launch == 'seeker':
-                self.queue_write('[Running project in DreamSeeker...]')
-            elif dm_launch == 'daemon':
-                self.queue_write('[Running project in DreamDaemon...]')
+            if byond_launch == 'seeker':
+                self.queue_write('[Running project in Dream Seeker...]')
+            elif byond_launch == 'daemon':
+                self.queue_write('[Running project in Dream Daemon...]')
 
         else:
             cmd = [self.get_setting('installation_path') + self.get_setting('compiler_executable')] + [self.get_build_file(working_dir, '.dme')]
@@ -132,11 +127,11 @@ class ExecDmBuildCommand(sublime_plugin.WindowCommand):
     def get_setting(self, config):
         settings = sublime.load_settings('Preferences.sublime-settings')
 
-        if settings.get('dm_' + config):
-            return settings.get('dm_' + config)
+        if settings.get('byond_' + config):
+            return settings.get('byond_' + config)
         else:
-            settings = sublime.load_settings('DM.sublime-settings')
-            return settings.get('dm_' + config)
+            settings = sublime.load_settings('BYOND.sublime-settings')
+            return settings.get('byond_' + config)
 
     def get_build_file(self, working_dir, ext):
         for root, dirs, files in os.walk(working_dir):

@@ -1,15 +1,15 @@
 {
-	// The full path to your DM installation.
+	// The full path to your BYOND installation.
     // x32: c:\PROGRA~1/BYOND/bin/
     // x64: c:\PROGRA~2/BYOND/bin/
-	"dm_installation_path": "c:/PROGRA~2/BYOND/bin/",
+	"byond_installation_path": "c:/PROGRA~2/BYOND/bin/",
 
 	// The default DM compiler to execute.
-	"dm_compiler_executable": "dm.exe",
+	"byond_compiler_executable": "dm.exe",
 
-	// The default DM seeker executable.
-	"dm_seeker_executable": "dreamseeker.exe",
+	// The default dream seeker executable.
+	"byond_seeker_executable": "dreamseeker.exe",
 
-	// The default DM daemon executable.
-	"dm_daemon_executable": "dreamdaemon.exe"
+	// The default dream daemon executable.
+	"byond_daemon_executable": "dreamdaemon.exe"
 }

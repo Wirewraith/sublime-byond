@@ -1,5 +1,5 @@
 {
-	"target": "exec_dm_build",
+	"target": "exec_byond_build",
 	"selector": "source.dm | source.dme | source.dmm | source.dmf | source.dms",
 	"file_patterns": ["*.dm", "*.dme", "*.dmm", "*.dmf", "*.dms"],
 	"cancel": {"kill": true},
@@ -10,12 +10,12 @@
 			"kill": true
 		},
 		{
-			"name": "Run in DreamSeeker",
-			"dm_launch": "seeker"
+			"name": "Run in Dream Seeker",
+			"byond_launch": "seeker"
 		},
 		{
-			"name": "Run in DreamDaemon",
-			"dm_launch": "daemon"
+			"name": "Run in Dream Daemon",
+			"byond_launch": "daemon"
 		},
 	]
 }
