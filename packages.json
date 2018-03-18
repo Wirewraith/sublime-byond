@@ -1,0 +1,17 @@
+{
+	"schema_version": "3.0.0",
+
+	"packages": [
+		{
+			"name": "BYOND",
+			"details": "https://github.com/Wirewraith/sublime-byond",
+			"labels": ["BYOND", "Dream Maker", "Dream Seeker", "Dream Daemon"],
+			"releases": [
+				{
+					"sublime_text": "*",
+					"tags": true
+				}
+			]
+		}
+	]
+}

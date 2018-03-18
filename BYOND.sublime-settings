@@ -1,0 +1,15 @@
+{
+	// The full path to your DM installation.
+    // x32: c:\PROGRA~1/BYOND/bin/
+    // x64: c:\PROGRA~2/BYOND/bin/
+	"dm_installation_path": "c:/PROGRA~2/BYOND/bin/",
+
+	// The default DM compiler to execute.
+	"dm_compiler_executable": "dm.exe",
+
+	// The default DM seeker executable.
+	"dm_seeker_executable": "dreamseeker.exe",
+
+	// The default DM daemon executable.
+	"dm_daemon_executable": "dreamdaemon.exe"
+}

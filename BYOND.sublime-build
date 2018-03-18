@@ -1,0 +1,21 @@
+{
+	"target": "exec_dm_build",
+	"selector": "source.dm | source.dme | source.dmm | source.dmf | source.dms",
+	"file_patterns": ["*.dm", "*.dme", "*.dmm", "*.dmf", "*.dms"],
+	"cancel": {"kill": true},
+
+	"variants": [
+		{
+			"name": "Kill current process",
+			"kill": true
+		},
+		{
+			"name": "Run in DreamSeeker",
+			"dm_launch": "seeker"
+		},
+		{
+			"name": "Run in DreamDaemon",
+			"dm_launch": "daemon"
+		},
+	]
+}
